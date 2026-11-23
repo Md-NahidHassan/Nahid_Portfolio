@@ -1,11 +1,17 @@
 # Md. Nahid Hassan — Personal Portfolio Website
 
+[![Vercel Deployment](https://img.shields.io/badge/Deployed%20with-Vercel-black?style=for-the-badge&logo=vercel)](https://nahidportfolio-psi.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-nahidportfolio--psi.vercel.app-00cc88?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nahidportfolio-psi.vercel.app/)
+
+> 🌐 **Live Website:** [https://nahidportfolio-psi.vercel.app/](https://nahidportfolio-psi.vercel.app/)
+
 Personal portfolio website of **Md. Nahid Hassan** — Full-Stack Developer & AI/ML Engineer.  
 Undergraduate student in Computer Science & Engineering at United International University (UIU), Dhaka, Bangladesh.
 
 ---
 
 ## 🚀 Features
+- **Live Deployment**: Hosted on Vercel with automated CI/CD at [nahidportfolio-psi.vercel.app](https://nahidportfolio-psi.vercel.app/).
 - **Responsive Architecture**: Mobile-first responsive layout tailored for all device sizes (mobile, tablet, desktop).
 - **Modern Dark UI**: Deep slate theme with radiant emerald/teal accents (`#00cc88`) and glassmorphism elements.
 - **Dedicated Portfolio Sections**:
@@ -21,6 +27,7 @@ Undergraduate student in Computer Science & Engineering at United International 
 ---
 
 ## 🛠️ Tech Stack
+- **Deployment**: [Vercel](https://vercel.com/)
 - **HTML5**: Semantic web structure and accessible markup
 - **CSS3**: Custom properties (CSS variables), Flexbox, CSS Grid, media queries
 - **JavaScript (ES6+)**: Dynamic DOM manipulation, mobile menu drawer, scroll spying
@@ -34,6 +41,7 @@ Resume is available directly on the website via download buttons or under `asset
 ---
 
 ## 📬 Contact & Profiles
+- **Website**: [nahidportfolio-psi.vercel.app](https://nahidportfolio-psi.vercel.app/)
 - **Email**: [nahid1332020@gmail.com](mailto:nahid1332020@gmail.com)
 - **LinkedIn**: [linkedin.com/in/mdnahidhasan1332020](https://linkedin.com/in/mdnahidhasan1332020)
 - **GitHub**: [github.com/Md-Nahid-Hassan](https://github.com/Md-Nahid-Hassan)
