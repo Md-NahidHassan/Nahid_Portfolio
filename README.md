@@ -1,0 +1,41 @@
+# Md. Nahid Hassan — Personal Portfolio Website
+
+Personal portfolio website of **Md. Nahid Hassan** — Full-Stack Developer & AI/ML Engineer.  
+Undergraduate student in Computer Science & Engineering at United International University (UIU), Dhaka, Bangladesh.
+
+---
+
+## 🚀 Features
+- **Responsive Architecture**: Mobile-first responsive layout tailored for all device sizes (mobile, tablet, desktop).
+- **Modern Dark UI**: Deep slate theme with radiant emerald/teal accents (`#00cc88`) and glassmorphism elements.
+- **Dedicated Portfolio Sections**:
+  - **Hero**: Introduction, title, dynamic badges, direct social links, and one-click CV download.
+  - **About Me**: Academic summary (CGPA 3.87/4.00), research background, and core metrics.
+  - **Technical Skills**: Grouped categories for Languages, Web Frameworks, AI/ML & NLP, and Cloud/IoT Tools.
+  - **Services / Expertise**: Full-Stack Development, Applied AI & NLP Systems, and IoT & Computer Vision.
+  - **Featured Projects**: Interactive showcase of 6 production & research projects with live URLs, API endpoints, and GitHub repos.
+  - **Achievements & Education**: Visual milestone timeline highlighting national Olympiad finalist honors and hackathon awards.
+  - **Contact Section**: Interactive form with validation and quick-connect channels (Email, Phone, LinkedIn, GitHub).
+- **Interactive Animations**: Smooth scroll reveal effects using ScrollReveal.js and responsive header blur.
+
+---
+
+## 🛠️ Tech Stack
+- **HTML5**: Semantic web structure and accessible markup
+- **CSS3**: Custom properties (CSS variables), Flexbox, CSS Grid, media queries
+- **JavaScript (ES6+)**: Dynamic DOM manipulation, mobile menu drawer, scroll spying
+- **Libraries & Assets**: [ScrollReveal v4](https://scrollrevealjs.org/), [Remix Icons](https://remixicon.com/), Google Fonts (*Poppins*)
+
+---
+
+## 📄 Resume / CV
+Resume is available directly on the website via download buttons or under `assets/pdf/Md_Nahid_Hassan_Resume.pdf`.
+
+---
+
+## 📬 Contact & Profiles
+- **Email**: [nahid1332020@gmail.com](mailto:nahid1332020@gmail.com)
+- **LinkedIn**: [linkedin.com/in/mdnahidhasan1332020](https://linkedin.com/in/mdnahidhasan1332020)
+- **GitHub**: [github.com/Md-Nahid-Hassan](https://github.com/Md-Nahid-Hassan)
+- **Hugging Face**: [huggingface.co/nahid1332020](https://huggingface.co/nahid1332020)
+- **Phone**: +880 1774-395000
