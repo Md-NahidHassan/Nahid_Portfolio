@@ -44,6 +44,6 @@ Resume is available directly on the website via download buttons or under `asset
 - **Website**: [nahidportfolio-psi.vercel.app](https://nahidportfolio-psi.vercel.app/)
 - **Email**: [nahid1332020@gmail.com](mailto:nahid1332020@gmail.com)
 - **LinkedIn**: [linkedin.com/in/mdnahidhasan1332020](https://linkedin.com/in/mdnahidhasan1332020)
-- **GitHub**: [github.com/Md-Nahid-Hassan](https://github.com/Md-Nahid-Hassan)
+- **GitHub**: [github.com/Md-NahidHassan](https://github.com/Md-NahidHassan)
 - **Hugging Face**: [huggingface.co/nahid1332020](https://huggingface.co/nahid1332020)
 - **Phone**: +880 1774-395000

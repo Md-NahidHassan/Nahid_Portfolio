@@ -73,15 +73,20 @@ const contactForm = document.getElementById('contact-form'),
       contactName = document.getElementById('contact-name'),
       contactEmail = document.getElementById('contact-email'),
       contactProject = document.getElementById('contact-project'),
-      contactMessage = document.getElementById('contact-message');
+      contactMessage = document.getElementById('contact-message'),
+      contactButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
-const sendEmail = (e) => {
+const sendEmail = async (e) => {
    e.preventDefault();
 
    if (!contactName || !contactEmail || !contactProject) return;
 
+   const name = contactName.value.trim();
+   const email = contactEmail.value.trim();
+   const message = contactProject.value.trim();
+
    // Check if the input fields have a value
-   if (contactName.value.trim() === '' || contactEmail.value.trim() === '' || contactProject.value.trim() === '') {
+   if (name === '' || email === '' || message === '') {
       if (contactMessage) {
          contactMessage.classList.remove('color-green');
          contactMessage.classList.add('color-red');
@@ -90,26 +95,66 @@ const sendEmail = (e) => {
       return;
    }
 
-   // Prepare mailto link as direct action
-   const subject = encodeURIComponent(`Portfolio Inquiry from ${contactName.value.trim()}`);
-   const body = encodeURIComponent(
-      `Name: ${contactName.value.trim()}\nEmail: ${contactEmail.value.trim()}\n\nMessage:\n${contactProject.value.trim()}`
-   );
-   
-   if (contactMessage) {
-      contactMessage.classList.remove('color-red');
-      contactMessage.classList.add('color-green');
-      contactMessage.textContent = 'Opening your email client... Message ready! ✅';
+   const originalBtnHtml = contactButton ? contactButton.innerHTML : 'Send Message';
+   if (contactButton) {
+      contactButton.disabled = true;
+      contactButton.innerHTML = 'Sending... <i class="ri-loader-4-line"></i>';
    }
 
-   // Open mailto link
-   window.location.href = `mailto:nahid1332020@gmail.com?subject=${subject}&body=${body}`;
+   if (contactMessage) {
+      contactMessage.classList.remove('color-red', 'color-green');
+      contactMessage.textContent = 'Sending your message... ⏳';
+   }
 
-   // Clear input fields after 4 seconds
-   setTimeout(() => {
-      if (contactMessage) contactMessage.textContent = '';
-      contactForm.reset();
-   }, 4000);
+   try {
+      const response = await fetch('https://formsubmit.co/ajax/nahid1332020@gmail.com', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+         },
+         body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+            _subject: `New Portfolio Message from ${name}`,
+            _captcha: 'false',
+            _template: 'table'
+         })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && (data.success === 'true' || data.success === true)) {
+         if (contactMessage) {
+            contactMessage.classList.remove('color-red');
+            contactMessage.classList.add('color-green');
+            contactMessage.textContent = 'Message sent successfully! ✅ I will reply soon.';
+         }
+         contactForm.reset();
+      } else {
+         throw new Error(data.message || 'Submission error');
+      }
+   } catch (error) {
+      console.error('Contact form submission error:', error);
+      // Graceful fallback to mailto if network or adblocker blocks AJAX
+      if (contactMessage) {
+         contactMessage.classList.remove('color-green');
+         contactMessage.classList.add('color-red');
+         contactMessage.textContent = 'Opening your email client as fallback... ✉️';
+      }
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      window.location.href = `mailto:nahid1332020@gmail.com?subject=${subject}&body=${body}`;
+   } finally {
+      if (contactButton) {
+         contactButton.disabled = false;
+         contactButton.innerHTML = originalBtnHtml;
+      }
+      setTimeout(() => {
+         if (contactMessage) contactMessage.textContent = '';
+      }, 6000);
+   }
 };
 
 if (contactForm) {
