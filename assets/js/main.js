@@ -51,6 +51,17 @@ window.addEventListener('resize', () => {
    }
 });
 
+/* Auto close mobile menu when user scrolls */
+let lastScrollPosition = window.scrollY;
+window.addEventListener('scroll', () => {
+   if (navMenu && navMenu.classList.contains('show-menu')) {
+      if (Math.abs(window.scrollY - lastScrollPosition) > 10) {
+         closeMenu();
+      }
+   }
+   lastScrollPosition = window.scrollY;
+}, { passive: true });
+
 /*=============== ADD BLUR TO HEADER ===============*/
 const blurHeader = () => {
    const header = document.getElementById('header');
