@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+   <meta name="theme-color" content="#1a1c24">
+   <meta name="color-scheme" content="dark">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
    <!--=============== FAVICON ===============-->
    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
@@ -66,11 +70,32 @@
                </li>
             </ul>
 
-            <!-- Close button for mobile -->
-            <div class="nav__close" id="nav-close">
-               <i class="ri-close-line"></i>
+            <!-- Mobile menu extra actions -->
+            <div class="nav__menu-footer">
+               <a href="assets/pdf/Md_Nahid_Hassan_Resume.pdf" download="Md_Nahid_Hassan_Resume.pdf" class="button button__mobile-resume">
+                  Download Resume <i class="ri-download-line"></i>
+               </a>
+               <div class="nav__menu-social">
+                  <a href="https://github.com/Md-NahidHassan" target="_blank" rel="noopener noreferrer" class="nav__menu-social-link" title="GitHub" aria-label="GitHub">
+                     <i class="ri-github-fill"></i>
+                  </a>
+                  <a href="https://linkedin.com/in/mdnahidhasan1332020" target="_blank" rel="noopener noreferrer" class="nav__menu-social-link" title="LinkedIn" aria-label="LinkedIn">
+                     <i class="ri-linkedin-fill"></i>
+                  </a>
+                  <a href="mailto:nahid1332020@gmail.com" class="nav__menu-social-link" title="Email" aria-label="Email">
+                     <i class="ri-mail-fill"></i>
+                  </a>
+               </div>
             </div>
+
+            <!-- Close button for mobile -->
+            <button type="button" class="nav__close" id="nav-close" aria-label="Close navigation menu">
+               <i class="ri-close-line"></i>
+            </button>
          </div>
+
+         <!-- Mobile backdrop overlay -->
+         <div class="nav__overlay" id="nav-overlay"></div>
 
          <div class="nav__buttons">
             <a href="assets/pdf/Md_Nahid_Hassan_Resume.pdf" download="Md_Nahid_Hassan_Resume.pdf" class="button nav__button">
@@ -78,9 +103,9 @@
             </a>
 
             <!-- Toggle button for mobile -->
-            <div class="nav__toggle" id="nav-toggle">
+            <button type="button" class="nav__toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
                <i class="ri-menu-4-line"></i>
-            </div>
+            </button>
          </div>
       </nav>
    </header>
@@ -128,7 +153,7 @@
 
             <div class="home__image">
                <div class="home__blob">
-                  <img src="assets/img/nahid.jpg" alt="Md. Nahid Hassan" class="home__img">
+                  <img src="assets/img/nahid.jpg" alt="Md. Nahid Hassan" class="home__img" fetchpriority="high">
                </div>
 
                <!-- Floating badges -->
@@ -159,7 +184,7 @@
          <div class="about__container container grid">
             <div class="about__image-box">
                <div class="about__img-wrapper">
-                  <img src="assets/img/nahid.jpg" alt="Md. Nahid Hassan" class="about__img">
+                  <img src="assets/img/nahid.jpg" alt="Md. Nahid Hassan" class="about__img" loading="lazy" decoding="async">
                </div>
             </div>
 
@@ -319,7 +344,7 @@
             <!-- Project 1 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-1.jpg" alt="upay Shield" class="projects__img">
+                  <img src="assets/img/project-img-1.jpg" alt="upay Shield" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">Fintech / Security</span>
                </div>
                <div class="projects__content">
@@ -348,7 +373,7 @@
             <!-- Project 2 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-2.jpg" alt="NoteKori" class="projects__img">
+                  <img src="assets/img/project-img-2.jpg" alt="NoteKori" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">AI & EdTech</span>
                </div>
                <div class="projects__content">
@@ -375,7 +400,7 @@
             <!-- Project 3 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-3.jpg" alt="Sentix AI" class="projects__img">
+                  <img src="assets/img/project-img-3.jpg" alt="Sentix AI" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">NLP / Deep Learning</span>
                </div>
                <div class="projects__content">
@@ -404,7 +429,7 @@
             <!-- Project 4 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-4.jpg" alt="EcoKnot" class="projects__img">
+                  <img src="assets/img/project-img-4.jpg" alt="EcoKnot" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">Community / Social Good</span>
                </div>
                <div class="projects__content">
@@ -431,7 +456,7 @@
             <!-- Project 5 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-5.jpg" alt="Smart Agriculture Robot" class="projects__img">
+                  <img src="assets/img/project-img-5.jpg" alt="Smart Agriculture Robot" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">IoT & Robotics</span>
                </div>
                <div class="projects__content">
@@ -458,7 +483,7 @@
             <!-- Project 6 -->
             <article class="projects__card">
                <div class="projects__img-box">
-                  <img src="assets/img/project-img-6.jpg" alt="Geo Trips" class="projects__img">
+                  <img src="assets/img/project-img-6.jpg" alt="Geo Trips" class="projects__img" loading="lazy" decoding="async">
                   <span class="projects__tag">Database Systems</span>
                </div>
                <div class="projects__content">
@@ -700,7 +725,7 @@
    </footer>
 
    <!--========== SCROLL UP ==========-->
-   <a href="#home" class="scrollup" id="scroll-up">
+   <a href="#home" class="scrollup" id="scroll-up" aria-label="Scroll to top">
       <i class="ri-arrow-up-line"></i>
    </a>
 

@@ -1,59 +1,87 @@
-/*=============== SHOW MENU ===============*/
+/*=============== SHOW & HIDE MENU WITH OVERLAY & SCROLL LOCK ===============*/
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
-      navClose = document.getElementById('nav-close');
+      navClose = document.getElementById('nav-close'),
+      navOverlay = document.getElementById('nav-overlay');
+
+const openMenu = () => {
+   if (navMenu) navMenu.classList.add('show-menu');
+   if (navOverlay) navOverlay.classList.add('show-overlay');
+   document.body.classList.add('lock-scroll');
+   if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+};
+
+const closeMenu = () => {
+   if (navMenu) navMenu.classList.remove('show-menu');
+   if (navOverlay) navOverlay.classList.remove('show-overlay');
+   document.body.classList.remove('lock-scroll');
+   if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+};
 
 /* Menu show */
 if (navToggle) {
-   navToggle.addEventListener('click', () => {
-      navMenu.classList.add('show-menu');
-   });
+   navToggle.addEventListener('click', openMenu);
 }
 
 /* Menu hidden */
 if (navClose) {
-   navClose.addEventListener('click', () => {
-      navMenu.classList.remove('show-menu');
-   });
+   navClose.addEventListener('click', closeMenu);
 }
 
-/*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelectorAll('.nav__link');
+/* Menu hidden via backdrop overlay click */
+if (navOverlay) {
+   navOverlay.addEventListener('click', closeMenu);
+}
 
-const linkAction = () => {
-   const navMenu = document.getElementById('nav-menu');
-   // When we click on each nav__link, we remove the show-menu class
-   navMenu.classList.remove('show-menu');
-};
-navLink.forEach(n => n.addEventListener('click', linkAction));
+/* Close menu with Escape key for keyboard / desktop access */
+document.addEventListener('keydown', (e) => {
+   if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
+      closeMenu();
+   }
+});
+
+/*=============== REMOVE MENU MOBILE ON LINK CLICK ===============*/
+const navLinks = document.querySelectorAll('.nav__link, .button__mobile-resume');
+navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+/* Reset mobile menu state on window resize */
+window.addEventListener('resize', () => {
+   if (window.innerWidth >= 1024) {
+      closeMenu();
+   }
+});
 
 /*=============== ADD BLUR TO HEADER ===============*/
 const blurHeader = () => {
    const header = document.getElementById('header');
+   if (!header) return;
    // Add a class if the bottom offset is greater than 50 of the viewport
    window.scrollY >= 50 ? header.classList.add('blur-header') 
                         : header.classList.remove('blur-header');
 };
-window.addEventListener('scroll', blurHeader);
+window.addEventListener('scroll', blurHeader, { passive: true });
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () => {
    const scrollUp = document.getElementById('scroll-up');
+   if (!scrollUp) return;
    // When the scroll is higher than 350 viewport height, add the show-scroll class
    window.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
                          : scrollUp.classList.remove('show-scroll');
 };
-window.addEventListener('scroll', scrollUp);
+window.addEventListener('scroll', scrollUp, { passive: true });
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]');
 
 const scrollActive = () => {
    const scrollDown = window.scrollY;
+   const header = document.getElementById('header');
+   const headerOffset = header ? header.offsetHeight + 15 : 70;
 
    sections.forEach(current => {
       const sectionHeight = current.offsetHeight,
-            sectionTop = current.offsetTop - 58,
+            sectionTop = current.offsetTop - headerOffset,
             sectionId = current.getAttribute('id'),
             sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
 
@@ -66,7 +94,7 @@ const scrollActive = () => {
       }
    });
 };
-window.addEventListener('scroll', scrollActive);
+window.addEventListener('scroll', scrollActive, { passive: true });
 
 /*=============== CONTACT FORM ===============*/
 const contactForm = document.getElementById('contact-form'),
@@ -161,21 +189,25 @@ if (contactForm) {
    contactForm.addEventListener('submit', sendEmail);
 }
 
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-if (typeof ScrollReveal !== 'undefined') {
+/*=============== SCROLL REVEAL ANIMATION (MOBILE & DESKTOP TUNED) ===============*/
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (typeof ScrollReveal !== 'undefined' && !prefersReducedMotion) {
+   const isMobile = window.innerWidth < 768;
+
    const sr = ScrollReveal({
       origin: 'top',
-      distance: '60px',
-      duration: 2000,
-      delay: 300,
-      reset: false // Animations repeat: false for cleaner experience
+      distance: isMobile ? '30px' : '50px',
+      duration: isMobile ? 1200 : 1800,
+      delay: isMobile ? 150 : 250,
+      reset: false // Animations run once for crisp performance
    });
 
    sr.reveal(`.home__data, .about__image-box, .skills__card:nth-child(odd)`);
-   sr.reveal(`.home__image, .about__data, .skills__card:nth-child(even)`, { origin: 'bottom', delay: 400 });
-   sr.reveal(`.services__card, .projects__card`, { interval: 150 });
-   sr.reveal(`.achievements__group:nth-child(1)`, { origin: 'left' });
-   sr.reveal(`.achievements__group:nth-child(2)`, { origin: 'right' });
-   sr.reveal(`.contact__info`, { origin: 'left' });
-   sr.reveal(`.contact__form-box`, { origin: 'right' });
+   sr.reveal(`.home__image, .about__data, .skills__card:nth-child(even)`, { origin: 'bottom', delay: isMobile ? 200 : 350 });
+   sr.reveal(`.services__card, .projects__card`, { interval: isMobile ? 100 : 150 });
+   sr.reveal(`.achievements__group:nth-child(1)`, { origin: isMobile ? 'bottom' : 'left' });
+   sr.reveal(`.achievements__group:nth-child(2)`, { origin: isMobile ? 'bottom' : 'right' });
+   sr.reveal(`.contact__info`, { origin: isMobile ? 'bottom' : 'left' });
+   sr.reveal(`.contact__form-box`, { origin: isMobile ? 'bottom' : 'right' });
 }
